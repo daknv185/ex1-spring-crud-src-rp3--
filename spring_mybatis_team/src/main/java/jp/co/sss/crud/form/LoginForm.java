@@ -1,12 +1,20 @@
 package jp.co.sss.crud.form;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 public class LoginForm {
 
-	//TODO フィールドに必要なアノテーションを付与しバリデーションを行うこと
+	//絹川 : ログイン入力チェック
 	/** 社員ID */
+	@NotNull
+	@Max(99999)
 	private Integer empId;
-
 	/** パスワード */
+	@NotBlank
+	@Size(max = 16)
 	private String empPass;
 
 	/**
