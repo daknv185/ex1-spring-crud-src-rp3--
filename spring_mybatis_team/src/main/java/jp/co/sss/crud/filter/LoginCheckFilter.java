@@ -7,6 +7,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import jp.co.sss.crud.entity.Employee;
 
 /**
  * ログインチェック用フィルタ
@@ -20,8 +22,15 @@ public class LoginCheckFilter extends HttpFilter {
 			throws IOException, ServletException {
 
 		//TODO セッションからユーザー情報を取得
+		
+		HttpSession session = request.getSession();
+		Employee employee = (Employee)session.getAttribute("user");
 
 		//TODO ユーザーがNULLの場合、ログイン画面にリダイレクトする
+		if(employee == null) {
+			response.sendRedirect("/spring_crud/");
+			return;
+		}
 
 		// 次の処理へ移行
 		chain.doFilter(request, response);
