@@ -25,7 +25,7 @@
 		<tr>
 			<th class="empId">社員ID</th>
 			<th class="empName">社員名</th>
-			<th:block th:if="${accessFlg}">
+			<th:block th:if="${session.user.authority == 2}">
 				<th class="gender">性別</th>
 				<th class="address">住所</th>
 				<th class="birthday">生年月日</th>
