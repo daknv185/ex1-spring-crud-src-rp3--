@@ -26,11 +26,20 @@
 	<!-- TODO 社員名検索 -->
 	<select id="findByEmpNameContainingOrderByEmpId"
 		resultType="jp.co.sss.crud.entity.Employee">
+		SELECT *
+		FROM Employee
+		WHERE emp_name LIKE '%${empName}%'
+		ORDER BY emp_id ASC
 	</select>
 
 	<!-- TODO 部署ID検索 -->
 	<select id="findByDepartmentDeptIdOrderByEmpId"
 		resultType="jp.co.sss.crud.entity.Employee">
+		resultType="jp.co.sss.crud.entity.Employee">
+		SELECT *
+		FROM Employee
+		WHERE dept_id = #{deptId}
+		ORDER BY emp_id ASC
 	</select>
 
 	<!-- TODO ログイン用のIDとパスワード検索 -->
