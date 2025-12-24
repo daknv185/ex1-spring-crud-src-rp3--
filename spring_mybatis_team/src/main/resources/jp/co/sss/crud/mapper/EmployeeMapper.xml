@@ -27,7 +27,9 @@
 	<select id="findByEmpNameContainingOrderByEmpId"
 		resultType="jp.co.sss.crud.entity.Employee">
 		SELECT *
-		FROM Employee
+		FROM Employee e
+		INNER JOIN Department d ON e.dept_id
+		= d.dept_id
 		WHERE emp_name LIKE '%${empName}%'
 		ORDER BY emp_id ASC
 	</select>
@@ -36,9 +38,12 @@
 	<select id="findByDepartmentDeptIdOrderByEmpId"
 		resultType="jp.co.sss.crud.entity.Employee">
 		SELECT *
-		FROM Employee
-		WHERE dept_id = #{deptId}
-		ORDER BY emp_id ASC
+		FROM Employee e
+		INNER JOIN Department d ON e.dept_id
+		= d.dept_id
+		WHERE e.dept_id = #{deptId}
+		ORDER BY e.emp_id ASC
+
 	</select>
 
 	<!-- TODO ログイン用のIDとパスワード検索 -->
@@ -47,7 +52,8 @@
 		SELECT *
 		FROM Employee
 		WHERE emp_id = #{empId}
-		AND emp_pass = #{empPass}
+		AND emp_pass =
+		#{empPass}
 	</select>
 
 
