@@ -67,7 +67,7 @@ public class IndexController {
 			//TODO loginResult.isLoginの結果がfalseの場合、loginResult.getErrorMsgメソッドを呼びだし、modelスコープに登録する
 		} else {//ログイン失敗時
 			//TODO loginResult.getErrorMsgを呼び出し、メッセージをmodelスコープに登録
-			model.addAttribute("error", loginResult.getErrorMsg());
+			model.addAttribute("errMessage", loginResult.getErrorMsg());
 			return "index";
 		}
 
