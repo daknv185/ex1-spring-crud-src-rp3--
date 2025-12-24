@@ -90,7 +90,7 @@ public class UpdateController {
 			Department department = searchForDepartmentByDeptIdService.execute(employeeForm.getDeptId());
 
 			// TODO 部署名をモデルに追加する
-			model.addAttribute("deptId", department.getDeptName());
+			model.addAttribute("deptName", department.getDeptName());
 
 			// 更新確認画面のビュー名を返す
 			return "update/update_check";
@@ -134,7 +134,7 @@ public class UpdateController {
 		Employee User = (Employee) session.getAttribute("user");
 
 		// TODO ログイン中のユーザーが自分の情報を更新した場合、セッション情報も更新
-		if (User == CopyForm) {
+		if (User.getEmpId() == CopyForm.getEmpId()) {
 			// TODO セッションに保存されているユーザーの社員名を更新
 			User.setEmpName(CopyForm.getEmpName());
 		}

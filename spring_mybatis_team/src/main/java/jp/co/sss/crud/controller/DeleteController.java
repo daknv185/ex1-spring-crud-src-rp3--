@@ -53,7 +53,7 @@ public class DeleteController {
 		model.addAttribute(SearchEmpId);
 
 		// TODO 取得した社員の部署名をモデルに追加する
-		model.addAttribute("deptId", SearchEmpId.getDeptName());
+		model.addAttribute("deptName", SearchEmpId.getDeptName());
 
 		// 削除確認画面のビュー名を返す
 		return "delete/delete_check";
