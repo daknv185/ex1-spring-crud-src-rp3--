@@ -58,7 +58,7 @@ public class ValidLoginTest {
 		String screenshotPath = "screenshots\\09_ValidLoginTest\\";
 
 		// 指定したURLに遷移する
-		webDriver.get("http://localhost:7779/spring_crud/");
+		webDriver.get("http://ex1-alb-1034683483.ap-northeast-1.elb.amazonaws.com:7779/spring_crud/");
 
 		// 社員ID入力欄をクリア
 		WebElement empIdElement = webDriver.findElement(By.name("empId"));
@@ -93,43 +93,43 @@ public class ValidLoginTest {
 		WebElement errElement = webDriver.findElement(By.cssSelector("p"));
 
 		// エラー文字列定義
-		String errMsgInputNUllOfEmpId = "社員IDを入力してください。";
+		String errMsgInputNUllOfEmpId = "社員IDを入力してください";
 
 		// 検証
 		assertTrue(errElement.getText().contains(errMsgInputNUllOfEmpId), "エラーメッセージが違います：" + errElement.getText());
 
 	}
 
-	@Test
+	/*@Test
 	@Order(2)
 	public void 異常系_ログイン操作_社員ID_桁数オーバー入力メッセージ出力() {
-
+	
 		// スクリーンショットのリスト
 		ArrayList<File> tempFileList = new ArrayList<File>();
 		// スクショ保存パス
 		String screenshotPath = "screenshots\\09_ValidLoginTest\\";
-
+	
 		// 指定したURLに遷移する
-		webDriver.get("http://localhost:7779/spring_crud/");
-
+		webDriver.get("http://ex1-alb-1034683483.ap-northeast-1.elb.amazonaws.com:7779/spring_crud/");
+	
 		// 社員IDの桁数超過で入力
 		WebElement empIdElement = webDriver.findElement(By.name("empId"));
 		empIdElement.clear();
 		empIdElement.sendKeys("111111");
-
+	
 		WebElement password = webDriver.findElement(By.name("empPass"));
 		password.clear();
 		password.sendKeys("2222");
-
+	
 		// スクリーンショット
 		tempFileList.add(((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE));
-
+	
 		// ボタン押下し送信
 		webDriver.findElement(By.cssSelector("input[type='submit']")).submit();
-
+	
 		// スクリーンショット
 		tempFileList.add(((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE));
-
+	
 		// スクリーンショット出力
 		int count = 0;
 		try {
@@ -141,20 +141,20 @@ public class ValidLoginTest {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+	
 		// 検証のため要素を取得
 		WebElement errElement = webDriver.findElement(By.cssSelector("p"));
-
+	
 		// エラー文字列定義
 		String errMsgDigitsOverOfEmpId = "社員IDは99999までの整数値で入力してください。";
-
+	
 		// 検証
 		assertTrue(errElement.getText().contains(errMsgDigitsOverOfEmpId), "エラーメッセージが違います：" + errElement.getText());
-
+	
 	}
-
+	*/
 	@Test
-	@Order(3)
+	@Order(2)
 	public void 異常系_ログイン操作_社員ID_文字種エラー1入力メッセージ出力() {
 
 		// スクリーンショットのリスト
@@ -163,7 +163,7 @@ public class ValidLoginTest {
 		String screenshotPath = "screenshots\\09_ValidLoginTest\\";
 
 		// 指定したURLに遷移する
-		webDriver.get("http://localhost:7779/spring_crud/");
+		webDriver.get("http://ex1-alb-1034683483.ap-northeast-1.elb.amazonaws.com:7779/spring_crud/");
 
 		// 社員IDの文字種を規定外に設定
 		WebElement empIdElement = webDriver.findElement(By.name("empId"));
@@ -207,7 +207,7 @@ public class ValidLoginTest {
 	}
 
 	@Test
-	@Order(4)
+	@Order(3)
 	public void 異常系_ログイン操作_社員ID_文字種エラー2入力メッセージ出力() {
 
 		// スクリーンショットのリスト
@@ -216,12 +216,12 @@ public class ValidLoginTest {
 		String screenshotPath = "screenshots\\09_ValidLoginTest\\";
 
 		// 指定したURLに遷移する
-		webDriver.get("http://localhost:7779/spring_crud/");
+		webDriver.get("http://ex1-alb-1034683483.ap-northeast-1.elb.amazonaws.com:7779/spring_crud/");
 
 		// 社員IDの文字種を規定外に指定
 		WebElement empIdElement = webDriver.findElement(By.name("empId"));
 		empIdElement.clear();
-		empIdElement.sendKeys("12.3");
+		empIdElement.sendKeys("12.5");
 
 		WebElement password = webDriver.findElement(By.name("empPass"));
 		password.clear();
@@ -260,7 +260,7 @@ public class ValidLoginTest {
 	}
 
 	@Test
-	@Order(5)
+	@Order(4)
 	public void 異常系_ログイン操作_パスワード_空文字入力メッセージ出力() {
 
 		// スクリーンショットのリスト
@@ -269,13 +269,117 @@ public class ValidLoginTest {
 		String screenshotPath = "screenshots\\09_ValidLoginTest\\";
 
 		// 指定したURLに遷移する
-		webDriver.get("http://localhost:7779/spring_crud/");
+		webDriver.get("http://ex1-alb-1034683483.ap-northeast-1.elb.amazonaws.com:7779/spring_crud/");
 
 		WebElement empIdElement = webDriver.findElement(By.name("empId"));
 		empIdElement.clear();
-		empIdElement.sendKeys("1");
+		empIdElement.sendKeys("100000");
 
 		// パスワードを空文字に指定
+		WebElement password = webDriver.findElement(By.name("empPass"));
+		password.clear();
+		password.sendKeys("2222");		// スクリーンショット
+		tempFileList.add(((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE));
+
+		// ボタン押下し送信
+		webDriver.findElement(By.cssSelector("input[type='submit']")).submit();
+
+		// スクリーンショット
+		tempFileList.add(((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE));
+
+		// スクリーンショット出力
+		int count = 0;
+		try {
+			for (File file : tempFileList) {
+				count++;
+				Files.move(file, new File(screenshotPath + new Object() {
+				}.getClass().getEnclosingMethod().getName() + "_" + count + ".png"));
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		// 検証のため要素を取得
+		WebElement errElement = webDriver.findElement(By.cssSelector("p"));
+
+		// エラー文字列定義
+		String errMsgNullOfEmpPass = "社員IDは99999までの整数値で入力してください。";
+
+		// 検証
+		assertTrue(errElement.getText().contains(errMsgNullOfEmpPass), "エラーメッセージが違います：" + errElement.getText());
+
+	}
+
+	@Test
+	@Order(5)
+	public void 異常系_ログイン操作_ログインエラーメッセージ出力() {
+
+		// スクリーンショットのリスト
+		ArrayList<File> tempFileList = new ArrayList<File>();
+		// スクショ保存パス
+		String screenshotPath = "screenshots\\09_ValidLoginTest\\";
+
+		// 指定したURLに遷移する
+		webDriver.get("http://ex1-alb-1034683483.ap-northeast-1.elb.amazonaws.com:7779/spring_crud/");
+
+		// 存在しない社員の情報で入力指定
+		WebElement empIdElement = webDriver.findElement(By.name("empId"));
+		empIdElement.clear();
+		empIdElement.sendKeys("0");
+
+		WebElement password = webDriver.findElement(By.name("empPass"));
+		password.clear();
+		password.sendKeys("2222");
+
+		// スクリーンショット
+		tempFileList.add(((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE));
+
+		// ボタン押下し送信
+		webDriver.findElement(By.cssSelector("input[type='submit']")).submit();
+
+		// スクリーンショット
+		tempFileList.add(((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE));
+
+		// スクリーンショット出力
+		int count = 0;
+		try {
+			for (File file : tempFileList) {
+				count++;
+				Files.move(file, new File(screenshotPath + new Object() {
+				}.getClass().getEnclosingMethod().getName() + "_" + count + ".png"));
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		// 検証のため要素を取得
+		WebElement errElement = webDriver.findElement(By.cssSelector("p"));
+
+		// エラー文字列定義
+		String errMsgIllegalEmpIdOrEmpPass = "社員ID、またはパスワードが間違っています。";
+
+		// 検証
+		assertTrue(errElement.getText().contains(errMsgIllegalEmpIdOrEmpPass), "エラーメッセージが違います：" + errElement.getText());
+
+	}
+	
+	@Test
+	@Order(6)
+	public void 異常系_ログイン操作_パスワード未入力時() {
+
+		// スクリーンショットのリスト
+		ArrayList<File> tempFileList = new ArrayList<File>();
+		// スクショ保存パス
+		String screenshotPath = "screenshots\\09_ValidLoginTest\\";
+
+		// 指定したURLに遷移する
+		webDriver.get("http://ex1-alb-1034683483.ap-northeast-1.elb.amazonaws.com:7779/spring_crud/");
+
+		// 存在しない社員の情報で入力指定
+		WebElement empIdElement = webDriver.findElement(By.name("empId"));
+		empIdElement.clear();
+		empIdElement.sendKeys("2");
+
 		WebElement password = webDriver.findElement(By.name("empPass"));
 		password.clear();
 
@@ -304,16 +408,16 @@ public class ValidLoginTest {
 		WebElement errElement = webDriver.findElement(By.cssSelector("p"));
 
 		// エラー文字列定義
-		String errMsgNullOfEmpPass = "パスワードを入力してください。";
+		String errMsgIllegalEmpIdOrEmpPass = "パスワードを入力してください。";
 
 		// 検証
-		assertTrue(errElement.getText().contains(errMsgNullOfEmpPass), "エラーメッセージが違います：" + errElement.getText());
+		assertTrue(errElement.getText().contains(errMsgIllegalEmpIdOrEmpPass), "エラーメッセージが違います：" + errElement.getText());
 
 	}
-
+	
 	@Test
-	@Order(6)
-	public void 異常系_ログイン操作_ログインエラーメッセージ出力() {
+	@Order(7)
+	public void 異常系_ログイン操作_パスワード空文字() {
 
 		// スクリーンショットのリスト
 		ArrayList<File> tempFileList = new ArrayList<File>();
@@ -321,16 +425,122 @@ public class ValidLoginTest {
 		String screenshotPath = "screenshots\\09_ValidLoginTest\\";
 
 		// 指定したURLに遷移する
-		webDriver.get("http://localhost:7779/spring_crud/");
+		webDriver.get("http://ex1-alb-1034683483.ap-northeast-1.elb.amazonaws.com:7779/spring_crud/");
 
 		// 存在しない社員の情報で入力指定
 		WebElement empIdElement = webDriver.findElement(By.name("empId"));
 		empIdElement.clear();
-		empIdElement.sendKeys("5");
+		empIdElement.sendKeys("2");
 
 		WebElement password = webDriver.findElement(By.name("empPass"));
 		password.clear();
-		password.sendKeys("5");
+		password.sendKeys(" ");
+
+		// スクリーンショット
+		tempFileList.add(((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE));
+
+		// ボタン押下し送信
+		webDriver.findElement(By.cssSelector("input[type='submit']")).submit();
+
+		// スクリーンショット
+		tempFileList.add(((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE));
+
+		// スクリーンショット出力
+		int count = 0;
+		try {
+			for (File file : tempFileList) {
+				count++;
+				Files.move(file, new File(screenshotPath + new Object() {
+				}.getClass().getEnclosingMethod().getName() + "_" + count + ".png"));
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		// 検証のため要素を取得
+		WebElement errElement = webDriver.findElement(By.cssSelector("p"));
+
+		// エラー文字列定義
+		String errMsgIllegalEmpIdOrEmpPass = "パスワードを入力してください。";
+
+		// 検証
+		assertTrue(errElement.getText().contains(errMsgIllegalEmpIdOrEmpPass), "エラーメッセージが違います：" + errElement.getText());
+
+	}
+	
+	@Test
+	@Order(8)
+	public void 異常系_ログイン操作_パスワード桁数チェック() {
+
+		// スクリーンショットのリスト
+		ArrayList<File> tempFileList = new ArrayList<File>();
+		// スクショ保存パス
+		String screenshotPath = "screenshots\\09_ValidLoginTest\\";
+
+		// 指定したURLに遷移する
+		webDriver.get("http://ex1-alb-1034683483.ap-northeast-1.elb.amazonaws.com:7779/spring_crud/");
+
+		// 存在しない社員の情報で入力指定
+		WebElement empIdElement = webDriver.findElement(By.name("empId"));
+		empIdElement.clear();
+		empIdElement.sendKeys("2");
+
+		WebElement password = webDriver.findElement(By.name("empPass"));
+		password.clear();
+		password.sendKeys("aaaaaaaaaaaaaaaaa");
+
+		// スクリーンショット
+		tempFileList.add(((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE));
+
+		// ボタン押下し送信
+		webDriver.findElement(By.cssSelector("input[type='submit']")).submit();
+
+		// スクリーンショット
+		tempFileList.add(((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE));
+
+		// スクリーンショット出力
+		int count = 0;
+		try {
+			for (File file : tempFileList) {
+				count++;
+				Files.move(file, new File(screenshotPath + new Object() {
+				}.getClass().getEnclosingMethod().getName() + "_" + count + ".png"));
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		// 検証のため要素を取得
+		WebElement errElement = webDriver.findElement(By.cssSelector("p"));
+
+		// エラー文字列定義
+		String errMsgIllegalEmpIdOrEmpPass = "パスワードは16文字以内で入力してください。";
+
+		// 検証
+		assertTrue(errElement.getText().contains(errMsgIllegalEmpIdOrEmpPass), "エラーメッセージが違います：" + errElement.getText());
+
+	}
+	
+	@Test
+	@Order(9)
+	public void 異常系_ログイン操作_存在しない社員チェック() {
+
+		// スクリーンショットのリスト
+		ArrayList<File> tempFileList = new ArrayList<File>();
+		// スクショ保存パス
+		String screenshotPath = "screenshots\\09_ValidLoginTest\\";
+
+		// 指定したURLに遷移する
+		webDriver.get("http://ex1-alb-1034683483.ap-northeast-1.elb.amazonaws.com:7779/spring_crud/");
+
+		// 存在しない社員の情報で入力指定
+		WebElement empIdElement = webDriver.findElement(By.name("empId"));
+		empIdElement.clear();
+		empIdElement.sendKeys("9999");
+
+		WebElement password = webDriver.findElement(By.name("empPass"));
+		password.clear();
+		password.sendKeys("9999");
 
 		// スクリーンショット
 		tempFileList.add(((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE));
