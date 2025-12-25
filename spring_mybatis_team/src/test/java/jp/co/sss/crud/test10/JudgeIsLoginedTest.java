@@ -53,7 +53,7 @@ public class JudgeIsLoginedTest {
 	private void doLogin() {
 
 		// 指定したURLに遷移する
-		webDriver.get("http://localhost:7779/spring_crud/");
+		webDriver.get("http://ex1-alb-1034683483.ap-northeast-1.elb.amazonaws.com:7779/spring_crud/");
 
 		WebElement loginIdElement = webDriver.findElement(By.name("empId"));
 		loginIdElement.clear();
@@ -92,7 +92,7 @@ public class JudgeIsLoginedTest {
 		tempFileList.add(((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE));
 
 		// 指定したURLにアクセス
-		String path = "http://localhost:7779/spring_crud/regist/input";
+		String path = "http://ex1-alb-1034683483.ap-northeast-1.elb.amazonaws.com:7779/spring_crud/regist/input";
 		webDriver.get(path);
 
 		// スクリーンショット
@@ -111,7 +111,7 @@ public class JudgeIsLoginedTest {
 		}
 
 		// 検証
-		assertEquals("http://localhost:7779/spring_crud/", webDriver.getCurrentUrl());
+		assertEquals("http://ex1-alb-1034683483.ap-northeast-1.elb.amazonaws.com:7779/spring_crud/", webDriver.getCurrentUrl());
 
 	}
 
@@ -125,6 +125,8 @@ public class JudgeIsLoginedTest {
 		String screenshotPath = "screenshots\\10_JudgeIsLoginedTest\\";
 
 		doLogin();
+		
+		tempFileList.add(((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE));
 
 		// ブラウザを閉じる代わりにページをクリアする
 		webDriver.manage().deleteAllCookies();
@@ -134,7 +136,7 @@ public class JudgeIsLoginedTest {
 		tempFileList.add(((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE));
 
 		// 指定したURLにアクセス
-		String path = "http://localhost:7779/spring_crud/regist/input";
+		String path = "http://ex1-alb-1034683483.ap-northeast-1.elb.amazonaws.com:7779/spring_crud/regist/input";
 		webDriver.get(path);
 
 		// スクリーンショット
@@ -153,7 +155,7 @@ public class JudgeIsLoginedTest {
 		}
 
 		// 検証
-		assertEquals("http://localhost:7779/spring_crud/", webDriver.getCurrentUrl());
+		assertEquals("http://ex1-alb-1034683483.ap-northeast-1.elb.amazonaws.com:7779/spring_crud/", webDriver.getCurrentUrl());
 
 	}
 
